@@ -37,7 +37,7 @@ const dataSource = new DataSourceBuilder()
     .addInstruction({
         where: {
             programId: ['cpamdpZCGKUy5JxQXB4dcpGPiikHawvSWAd6mEn1sGG'],
-//            d8: ['0xf8c69e91e17587c'],
+            d8: ['0xf8c69e91e17587c8'],
             isCommitted: true // where successfully committed
         },
         // for each instruction selected above
@@ -57,10 +57,12 @@ run(dataSource, database, async ctx => {
 
     for (let block of blocks) {
         for (let ins of block.instructions) {
-            if ( ! ( ins.instructionAddress[0] === 5 && ins.instructionAddress.length === 1 ) ) continue
+//            if ( ! ( ins.instructionAddress[0] === 5 && ins.instructionAddress.length === 1 ) ) continue
+            if ( ins.d8 !== '0xf8c69e91e17587c8' ) continue
             console.log(ins.transaction?.signatures[0])
             console.log(ins)
             console.log(ins.inner)
+            console.log('==============================')
         }
     }
 })
